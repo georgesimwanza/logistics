@@ -2,16 +2,37 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
-    // TODO: wire up your auth logic here
-    setTimeout(() => setLoading(false), 1500);
+    setLoginError("");
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      if (result?.error) {
+        setLoginError("Invalid username or password.");
+      } else {
+        router.push("/services");
+      }
+    } catch {
+      setLoginError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -92,6 +113,8 @@ export default function LoginPage() {
                 type="email"
                 required
                 placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#b5cc18]/60 transition-colors"
               />
             </div>
@@ -112,6 +135,8 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"}
                   required
                   placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 pr-12 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#b5cc18]/60 transition-colors"
                 />
                 <button
@@ -123,6 +148,11 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
+
+            {/* Error */}
+            {loginError && (
+              <p className="text-red-400 text-xs -mt-1">{loginError}</p>
+            )}
 
             {/* Submit */}
             <button
