@@ -208,12 +208,12 @@ export default function ServicesPage() {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
+            <Link
+              href="/clearance"
               className="inline-flex items-center gap-2 bg-[#b5cc18] text-[#111] text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#c8e01a] transition-colors"
             >
               Start clearing →
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -253,12 +253,12 @@ export default function ServicesPage() {
                 </li>
               ))}
             </ul>
-            <a
-              href="#contact"
+            <Link
+              href="/delivery"
               className="inline-flex items-center gap-2 bg-[#b5cc18] text-[#111] text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#c8e01a] transition-colors"
             >
               Book transport →
-            </a>
+            </Link>
           </div>
           <div className="flex flex-col gap-3">
             {[
