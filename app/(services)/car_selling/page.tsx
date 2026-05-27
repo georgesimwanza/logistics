@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const dummyUser = {
@@ -8,101 +8,46 @@ const dummyUser = {
   avatar: "https://i.pravatar.cc/150?u=george",
 };
 
-const cars = [
-  {
-    id: 1,
-    make: "Mercedes-Benz",
-    model: "A Class",
-    year: 2014,
-    price: 8995,
-    mileage: "98,000",
-    acceleration: "9.3s",
-    mpg: "64.2",
-    fuel: "Diesel",
-    image:
-      "https://images.unsplash.com/photo-1617531653332-bd46c16f4d68?w=600&q=80",
-    badge: "Popular",
-  },
-  {
-    id: 2,
-    make: "Land Rover",
-    model: "Range Rover Evoque",
-    year: 2013,
-    price: 15250,
-    mileage: "81,000",
-    acceleration: "8s",
-    mpg: "43.5",
-    fuel: "Diesel",
-    image:
-      "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80",
-    badge: "4x4",
-  },
-  {
-    id: 3,
-    make: "Jaguar",
-    model: "XF",
-    year: 2018,
-    price: 17250,
-    mileage: "15,000",
-    acceleration: "9.5s",
-    mpg: "49",
-    fuel: "Petrol",
-    image:
-      "https://images.unsplash.com/photo-1555353540-64580b51c258?w=600&q=80",
-    badge: "Low Miles",
-  },
-  {
-    id: 4,
-    make: "Jaguar",
-    model: "XK",
-    year: 2016,
-    price: 28500,
-    mileage: "25,000",
-    acceleration: "5.9s",
-    mpg: "25",
-    fuel: "Petrol",
-    image:
-      "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80",
-    badge: "Performance",
-  },
-  {
-    id: 5,
-    make: "BMW",
-    model: "3 Series",
-    year: 2019,
-    price: 22500,
-    mileage: "34,000",
-    acceleration: "6.1s",
-    mpg: "55",
-    fuel: "Diesel",
-    image:
-      "https://images.unsplash.com/photo-1556189250-72ba954cfc2b?w=600&q=80",
-    badge: "New In",
-  },
-  {
-    id: 6,
-    make: "Audi",
-    model: "Q5",
-    year: 2020,
-    price: 31000,
-    mileage: "22,000",
-    acceleration: "7.2s",
-    mpg: "40",
-    fuel: "Diesel",
-    image:
-      "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&q=80",
-    badge: "Premium",
-  },
-];
-
 const makes = ["All", "Mercedes-Benz", "Land Rover", "Jaguar", "BMW", "Audi"];
 const fuels = ["All", "Petrol", "Diesel"];
 
+type Car = {
+  _id: string;
+  make: string;
+  model: string;
+  year: number;
+  price: number;
+  mileage: string;
+  acceleration: string;
+  mpg: string;
+  fuel: string;
+  image: string;
+  badge: string;
+};
+
 export default function CarsPage() {
   const user = dummyUser;
+  const [cars, setCars] = useState<Car[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedMake, setSelectedMake] = useState("All");
   const [selectedFuel, setSelectedFuel] = useState("All");
   const [maxPrice, setMaxPrice] = useState(50000);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        const res = await fetch("/api/cars");
+        const { data } = await res.json();
+        setCars(data);
+      } catch (error) {
+        console.error("Failed to fetch cars:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
 
   const filtered = cars.filter((c) => {
     if (selectedMake !== "All" && c.make !== selectedMake) return false;
@@ -225,13 +170,13 @@ export default function CarsPage() {
             <p className="text-[10px] text-white/35 tracking-[2px] uppercase mb-2">
               Max price:{" "}
               <span className="text-[#b5cc18]">
-                ${maxPrice.toLocaleString()}
+                K{maxPrice.toLocaleString()}
               </span>
             </p>
             <input
               type="range"
-              min={5000}
-              max={50000}
+              min={50000}
+              max={500000}
               step={500}
               value={maxPrice}
               onChange={(e) => setMaxPrice(Number(e.target.value))}
@@ -239,14 +184,20 @@ export default function CarsPage() {
             />
           </div>
           <p className="text-xs text-white/30 pb-1">
-            {filtered.length} vehicle{filtered.length !== 1 ? "s" : ""} found
+            {loading
+              ? "Loading..."
+              : `${filtered.length} vehicle${filtered.length !== 1 ? "s" : ""} found`}
           </p>
         </div>
       </div>
 
       {/* ── Car Grid ── */}
       <section className="px-8 py-10">
-        {filtered.length === 0 ? (
+        {loading ? (
+          <div className="text-center py-20 text-white/30 text-sm">
+            Loading vehicles...
+          </div>
+        ) : filtered.length === 0 ? (
           <div className="text-center py-20 text-white/30 text-sm">
             No vehicles match your filters. Try adjusting them.
           </div>
@@ -254,7 +205,7 @@ export default function CarsPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((car) => (
               <div
-                key={car.id}
+                key={car._id}
                 className="bg-[#1a1a1a] border border-white/10 rounded-xl overflow-hidden hover:border-[#b5cc18]/40 transition-all group"
               >
                 {/* Image */}
@@ -291,20 +242,17 @@ export default function CarsPage() {
                       { icon: "📅", val: car.year },
                       { icon: "🛣️", val: `${car.mileage} mi` },
                       { icon: "⚡", val: `${car.acceleration}` },
-                      { icon: "⛽", val: `${car.mpg} mpg` },
-                    ]
-                      .slice(0, 3)
-                      .map((s, i) => (
-                        <div
-                          key={i}
-                          className="bg-white/5 rounded-lg px-2 py-2 flex flex-col items-center gap-1"
-                        >
-                          <span className="text-base">{s.icon}</span>
-                          <span className="text-[11px] text-white/60">
-                            {s.val}
-                          </span>
-                        </div>
-                      ))}
+                    ].map((s, i) => (
+                      <div
+                        key={i}
+                        className="bg-white/5 rounded-lg px-2 py-2 flex flex-col items-center gap-1"
+                      >
+                        <span className="text-base">{s.icon}</span>
+                        <span className="text-[11px] text-white/60">
+                          {s.val}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                   <button className="w-full border border-[#b5cc18]/40 text-[#b5cc18] text-sm py-2.5 rounded-lg hover:bg-[#b5cc18] hover:text-[#111] transition-colors font-medium">
                     View Vehicle
