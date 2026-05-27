@@ -157,7 +157,7 @@ export default function ServicesPage() {
                 },
                 {
                   step: "4",
-                  title: "Release &amp; handover",
+                  title: "Release & handover",
                   desc: "Your vehicle or cargo is cleared and handed over.",
                 },
               ].map((s) => (
