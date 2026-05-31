@@ -218,17 +218,39 @@ export default function TransportationPage() {
   const [trackRef, setTrackRef] = useState("");
   const [trackingVisible, setTrackingVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const updateForm = (field: keyof BookingForm, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: POST /api/transport/book
-    console.log("Transport booking:", form);
-    setSubmitted(true);
-    setForm(EMPTY_FORM);
-    setTimeout(() => setSubmitted(false), 4000);
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const res = await fetch("/api/transport", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Booking failed. Please try again.");
+      }
+
+      setSubmitted(true);
+      setForm(EMPTY_FORM);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error ? err.message : "Something went wrong.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleTrack = () => {
@@ -320,6 +342,12 @@ export default function TransportationPage() {
             {submitted && (
               <div className="mb-6 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-lg px-4 py-3 text-sm text-[#b5cc18]">
                 ✓ Booking received! Well confirm shortly.
+              </div>
+            )}
+
+            {submitError && (
+              <div className="mb-6 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-sm text-red-400">
+                ✕ {submitError}
               </div>
             )}
 
@@ -499,9 +527,10 @@ export default function TransportationPage() {
 
               <button
                 type="submit"
-                className="bg-[#b5cc18] text-[#111] text-sm font-medium py-3 rounded-md hover:bg-[#c8e01a] transition-colors"
+                disabled={submitting}
+                className="bg-[#b5cc18] text-[#111] text-sm font-medium py-3 rounded-md hover:bg-[#c8e01a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Request transport →
+                {submitting ? "Sending…" : "Request transport →"}
               </button>
             </form>
           </div>

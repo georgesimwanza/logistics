@@ -168,13 +168,34 @@ export default function CustomsClearingPage() {
   const updateForm = (field: keyof ClearanceForm, value: string) =>
     setForm((prev) => ({ ...prev, [field]: value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: POST /api/clearance/submit
-    console.log("Clearance request:", form);
-    setSubmitted(true);
-    setForm(EMPTY_FORM);
-    setTimeout(() => setSubmitted(false), 4000);
+    try {
+      const res = await fetch("/api/clearance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          CargoType: form.cargoType,
+          Country: form.origin,
+          EntryPoint: form.entryPoint,
+          Value: form.value,
+          Fullname: form.name,
+          ADN: form.notes,
+          Phone: form.phone,
+          Make: form.make,
+          Model: form.model,
+          Year: form.year,
+        }),
+      });
+
+      if (!res.ok) return;
+
+      setSubmitted(true);
+      setForm(EMPTY_FORM);
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const tabs: { id: TabId; label: string; badge?: number }[] = [
@@ -323,7 +344,7 @@ export default function CustomsClearingPage() {
                     </label>
                     <input
                       type="text"
-                      placeholder="e.g. 8,500"
+                      placeholder=""
                       value={form.value}
                       onChange={(e) => updateForm("value", e.target.value)}
                       className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
@@ -346,13 +367,7 @@ export default function CustomsClearingPage() {
                         </label>
                         <input
                           type="text"
-                          placeholder={
-                            field === "make"
-                              ? "e.g. Toyota"
-                              : field === "model"
-                                ? "e.g. Land Cruiser"
-                                : "e.g. 2018"
-                          }
+                          placeholder=""
                           value={form[field]}
                           onChange={(e) => updateForm(field, e.target.value)}
                           className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
