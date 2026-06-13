@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RKK Logistics
 
-## Getting Started
+A logistics platform for vehicle buying, selling, clearing, and forwarding — built for cross-border vehicle import/export operations.
 
-First, run the development server:
+> ⚠️ **Status:** Work in progress — UI and core flows are still being built out.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+RKK Logistics Limited provides end-to-end vehicle logistics services:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Car Buying & Selling** – vehicle sourcing & procurement, full inspection & verification, documentation, paperwork & title transfer, and deal brokering
+- **Clearing & Forwarding** – licensed and bonded customs clearing across borders
+- **Fleet management** – tracking and managing vehicles in the pipeline
+- **Shipment tracking** – real-time status updates for customers
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Operating out of Nakonde Hospital Junction, with an operational reach across 4 countries and 500+ vehicles cleared to date.
 
-## Learn More
+## Preview
 
-To learn more about Next.js, take a look at the following resources:
+### Homepage
+![RKK Logistics services page](./public/Screenshot%202026-06-13%20144637.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Services Page
+![RKK Logistics services page](./public/Screenshot%2026-06-13%144813.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Pages
 
-## Deploy on Vercel
+- `/` – hero, stats (vehicles cleared, support availability, operational reach), and services overview
+- `/services` – detailed breakdown of services (car buying & selling, clearing & forwarding, documentation, deal brokering)
+- `/fleet` – vehicle fleet listings
+- `/track` – shipment/order tracking
+- `/contact` – contact and support
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Roadmap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Authentication & user accounts
+- [ ] Shipment tracking integration
+- [ ] Fleet inventory management
+- [ ] Quote request & booking flow
+- [ ] Admin dashboard

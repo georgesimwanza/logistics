@@ -1,12 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-
-const dummyUser = {
-  name: "George Simwanza",
-  email: "george@example.com",
-  avatar: "https://i.pravatar.cc/150?u=george",
-};
+import NavBar from "@/app/components/NavBar";
 
 const makes = ["All", "Mercedes-Benz", "Land Rover", "Jaguar", "BMW", "Audi"];
 const fuels = ["All", "Petrol", "Diesel"];
@@ -26,7 +21,6 @@ type Car = {
 };
 
 export default function CarsPage() {
-  const user = dummyUser;
   const [cars, setCars] = useState<Car[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedMake, setSelectedMake] = useState("All");
@@ -58,46 +52,7 @@ export default function CarsPage() {
 
   return (
     <main className="bg-[#111111] text-white min-h-screen font-sans">
-      {/* ── Nav ── */}
-      <nav className="flex items-center justify-between px-8 py-4 border-b border-white/10 sticky top-0 z-50 bg-[#111111]/95 backdrop-blur">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#b5cc18] flex items-center justify-center">
-            <span className="text-[#111] font-semibold text-base leading-none">
-              R
-            </span>
-          </div>
-          <span className="text-sm font-medium tracking-[2px] uppercase">
-            RKK Logistics
-          </span>
-        </Link>
-        <div className="hidden md:flex items-center gap-8">
-          {["Services", "Fleet", "Track", "Contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm text-white/50 hover:text-white transition-colors"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="hidden md:flex flex-col items-end">
-            <span className="text-xs font-medium text-white leading-tight">
-              {user.name}
-            </span>
-            <span className="text-[11px] text-white/40">{user.email}</span>
-          </div>
-          <div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-[#b5cc18]/40 ring-offset-2 ring-offset-[#111]">
-            <img
-              src={user.avatar}
-              alt={user.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </nav>
-
+      <NavBar />
       {/* ── Hero ── */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/80 to-transparent z-10" />
@@ -106,7 +61,7 @@ export default function CarsPage() {
           alt="Cars"
           className="w-full h-[340px] object-cover object-center"
         />
-        <div className="absolute inset-0 z-20 flex flex-col justify-center px-8">
+        <div className="`absolute inset-0 z-20 flex flex-col justify-center px-8">
           <div className="inline-flex items-center gap-2 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-full px-3 py-1 text-xs text-[#b5cc18] mb-4 w-fit">
             <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18]" />
             Quality pre-owned vehicles
