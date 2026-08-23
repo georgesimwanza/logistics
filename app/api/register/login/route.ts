@@ -1,7 +1,7 @@
-import User from "@/app/(Models)/user";
-import connnectToMongodb from "@/app/lib/connect";
+import { getUserByEmail } from "@/app/(Models)/user";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+
 export async function POST(req: Request) {
   try {
     const { email, password } = await req.json();
@@ -11,9 +11,8 @@ export async function POST(req: Request) {
         { status: 400 },
       );
     }
-    await connnectToMongodb();
 
-    const user = await User.findOne({ email });
+    const user = await getUserByEmail(email);
     if (!user) {
       return NextResponse.json(
         { error: "Invalid credentials" },
@@ -22,7 +21,6 @@ export async function POST(req: Request) {
     }
 
     const match = await bcrypt.compare(password, user.password);
-
     if (!match) {
       return NextResponse.json(
         { error: "Invalid credentials" },

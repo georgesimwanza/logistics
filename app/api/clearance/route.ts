@@ -1,11 +1,9 @@
-import ClearanceSchema from "@/app/(Models)/clearance";
-import connectToMongodb from "@/app/lib/connect";
+import { createClearanceForm } from "@/app/(Models)/clearance";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-
     const {
       CargoType,
       Country,
@@ -19,7 +17,6 @@ export async function POST(req: NextRequest) {
       Year,
     } = body;
 
-    // Required field validation
     const missing = [];
     if (!CargoType) missing.push("CargoType");
     if (!Country) missing.push("Country");
@@ -27,7 +24,6 @@ export async function POST(req: NextRequest) {
     if (!Value) missing.push("Value");
     if (!Fullname) missing.push("Fullname");
     if (!Phone) missing.push("Phone");
-
     if (missing.length > 0) {
       return NextResponse.json(
         { error: `Missing required fields: ${missing.join(", ")}` },
@@ -35,7 +31,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Vehicle fields required when cargo type is motor vehicle
     if (CargoType === "Motor vehicle" && (!Make || !Model || !Year)) {
       return NextResponse.json(
         {
@@ -46,9 +41,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await connectToMongodb();
-
-    const clearance = await ClearanceSchema.create({
+    const id = await createClearanceForm({
       CargoType,
       Country,
       EntryPoint,
@@ -61,10 +54,7 @@ export async function POST(req: NextRequest) {
       Year: Year || "",
     });
 
-    return NextResponse.json(
-      { success: true, id: clearance._id },
-      { status: 201 },
-    );
+    return NextResponse.json({ success: true, id }, { status: 201 });
   } catch (error) {
     console.error("Failed to save clearance request:", error);
     return NextResponse.json(

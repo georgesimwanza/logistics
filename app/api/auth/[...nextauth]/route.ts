@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import connectToMongodb from "@/app/lib/connect";
-import User from "@/app/(Models)/user";
+import { adminDb } from "@/app/lib/firebaseAdmin";
 import bcrypt from "bcryptjs";
 
 const handler = NextAuth({
@@ -15,15 +14,21 @@ const handler = NextAuth({
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        await connectToMongodb();
+        const usersRef = adminDb.collection("users");
+        const snapshot = await usersRef
+          .where("email", "==", credentials.email)
+          .limit(1)
+          .get();
 
-        const user = await User.findOne({ email: credentials.email });
-        if (!user) return null;
+        if (snapshot.empty) return null;
+
+        const userDoc = snapshot.docs[0];
+        const user = userDoc.data();
 
         const match = await bcrypt.compare(credentials.password, user.password);
         if (!match) return null;
 
-        return { id: user._id.toString(), email: user.email, name: user.name };
+        return { id: userDoc.id, email: user.email, name: user.name };
       },
     }),
   ],
