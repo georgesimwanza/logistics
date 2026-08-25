@@ -36,29 +36,32 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#111111] flex">
+    <main className="min-h-screen bg-[#f7f4ee] flex">
       {/* ── Left panel (branding) ── */}
-      <div className="hidden lg:flex flex-col justify-between w-[420px] shrink-0 bg-[#b5cc18] p-10">
+      <div className="hidden lg:flex flex-col justify-between w-[420px] shrink-0 bg-[#2955c8] p-10">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-[#111] flex items-center justify-center">
-            <span className="text-[#b5cc18] font-semibold text-base leading-none">
-              R
-            </span>
-          </div>
-          <span className="text-sm font-medium tracking-[2px] uppercase text-[#111]">
-            RKK Logistics
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <rect width="34" height="34" rx="8" fill="white" />
+            <path
+              d="M17 8c-3.3 0-6 2.6-6 6 0 4.4 6 12 6 12s6-7.6 6-12c0-3.4-2.7-6-6-6Z"
+              fill="#2955c8"
+            />
+            <circle cx="17" cy="14" r="2.2" fill="white" />
+          </svg>
+          <span className="text-sm font-medium tracking-[1.5px] uppercase text-white">
+            GreatNorth Logistics &amp; Freight
           </span>
         </div>
 
         <div>
-          <p className="text-[#111] text-3xl font-medium leading-snug mb-4">
+          <p className="text-white text-3xl font-medium leading-snug mb-4">
             Welcome back.
             <br />
             Let&apos;s move things forward.
           </p>
-          <p className="text-[#111]/60 text-sm leading-relaxed">
-            Clearing &amp; Forwarding Solutions Delivered With Care. Log in to
-            manage your fleet, track deliveries, and more.
+          <p className="text-white/70 text-sm leading-relaxed">
+            Clearing &amp; forwarding, the length of the Great North Road. Log
+            in to manage your fleet, track deliveries, and more.
           </p>
         </div>
 
@@ -66,11 +69,11 @@ export default function LoginPage() {
           {[
             ["500+", "Vehicles cleared"],
             ["24/7", "Support"],
-            ["4", "Countries"],
+            ["3", "Countries"],
           ].map(([num, label]) => (
             <div key={label}>
-              <p className="text-[#111] text-xl font-medium">{num}</p>
-              <p className="text-[#111]/50 text-xs">{label}</p>
+              <p className="text-white text-xl font-medium">{num}</p>
+              <p className="text-white/60 text-xs">{label}</p>
             </div>
           ))}
         </div>
@@ -80,21 +83,24 @@ export default function LoginPage() {
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12">
         {/* Mobile logo */}
         <div className="flex items-center gap-3 mb-10 lg:hidden">
-          <div className="w-9 h-9 rounded-full bg-[#b5cc18] flex items-center justify-center">
-            <span className="text-[#111] font-semibold text-base leading-none">
-              R
-            </span>
-          </div>
-          <span className="text-sm font-medium tracking-[2px] uppercase text-white">
-            RKK Logistics
+          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <rect width="34" height="34" rx="8" fill="#2955c8" />
+            <path
+              d="M17 8c-3.3 0-6 2.6-6 6 0 4.4 6 12 6 12s6-7.6 6-12c0-3.4-2.7-6-6-6Z"
+              fill="#f7f4ee"
+            />
+            <circle cx="17" cy="14" r="2.2" fill="#2955c8" />
+          </svg>
+          <span className="text-sm font-medium tracking-[1.5px] uppercase text-[#10233d]">
+            GreatNorth Logistics &amp; Freight
           </span>
         </div>
 
         <div className="w-full max-w-[400px]">
-          <h1 className="text-2xl font-medium text-white mb-1">Sign in</h1>
-          <p className="text-sm text-white/40 mb-8">
+          <h1 className="text-2xl font-medium text-[#10233d] mb-1">Sign in</h1>
+          <p className="text-sm text-[#5c6a7a] mb-8">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-[#b5cc18] hover:underline">
+            <Link href="/register" className="text-[#2955c8] hover:underline">
               Create one
             </Link>
           </p>
@@ -103,7 +109,7 @@ export default function LoginPage() {
             {/* Email */}
             <div>
               <label
-                className="block text-xs text-white/50 mb-1.5"
+                className="block text-xs text-[#5c6a7a] mb-1.5"
                 htmlFor="email"
               >
                 Email address
@@ -115,17 +121,17 @@ export default function LoginPage() {
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#b5cc18]/60 transition-colors"
+                className="w-full bg-white border border-[#e2ddd0] rounded-lg px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/50 focus:outline-none focus:border-[#2955c8]/60 transition-colors"
               />
             </div>
 
             {/* Password */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs text-white/50" htmlFor="password">
+                <label className="text-xs text-[#5c6a7a]" htmlFor="password">
                   Password
                 </label>
-                <a href="#" className="text-xs text-[#b5cc18] hover:underline">
+                <a href="#" className="text-xs text-[#2955c8] hover:underline">
                   Forgot password?
                 </a>
               </div>
@@ -137,12 +143,12 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-4 py-3 pr-12 text-sm text-white placeholder:text-white/25 focus:outline-none focus:border-[#b5cc18]/60 transition-colors"
+                  className="w-full bg-white border border-[#e2ddd0] rounded-lg px-4 py-3 pr-12 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/50 focus:outline-none focus:border-[#2955c8]/60 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/70 transition-colors text-xs"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5c6a7a]/60 hover:text-[#10233d] transition-colors text-xs"
                 >
                   {showPassword ? "Hide" : "Show"}
                 </button>
@@ -151,21 +157,21 @@ export default function LoginPage() {
 
             {/* Error */}
             {loginError && (
-              <p className="text-red-400 text-xs -mt-1">{loginError}</p>
+              <p className="text-red-600 text-xs -mt-1">{loginError}</p>
             )}
 
             {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full bg-[#b5cc18] text-[#111] font-medium text-sm py-3 rounded-lg hover:bg-[#c8e01a] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+              className="mt-2 w-full bg-[#2955c8] text-white font-medium text-sm py-3 rounded-lg hover:bg-[#1f45a8] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
           </form>
 
-          <p className="text-xs text-white/20 text-center mt-8">
-            © 2025 RKK Logistics Limited
+          <p className="text-xs text-[#5c6a7a]/70 text-center mt-8">
+            © 2026 GreatNorth Logistics and Freight Ltd
           </p>
         </div>
       </div>

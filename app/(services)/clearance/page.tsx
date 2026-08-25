@@ -39,7 +39,7 @@ interface ClearanceForm {
 const CASES: ClearanceCase[] = [
   {
     id: "1",
-    ref: "RKK-2025-0041",
+    ref: "GNL-2026-0041",
     title: "Toyota Land Cruiser 2019",
     border: "Nakonde",
     agent: "Justus J.",
@@ -50,7 +50,7 @@ const CASES: ClearanceCase[] = [
   },
   {
     id: "2",
-    ref: "RKK-2025-0038",
+    ref: "GNL-2026-0038",
     title: "Commercial goods — 3 pallets",
     border: "Kasumbalesa",
     agent: "Justus J.",
@@ -90,25 +90,19 @@ const COUNTRIES = [
   {
     flag: "🇿🇲",
     name: "Zambia",
-    ports: "Nakonde · Chirundu · Kasumbalesa · Mchinji · Livingstone",
+    ports: "Nakonde · Kasumbalesa · Chirundu",
     tag: "Headquarters",
   },
   {
     flag: "🇹🇿",
     name: "Tanzania",
-    ports: "Dar es Salaam · Tunduma · Namanga",
+    ports: "Dar es Salaam · Tunduma",
     tag: "Active",
   },
   {
     flag: "🇨🇩",
     name: "DRC",
-    ports: "Lubumbashi · Kasumbalesa · Kasindi",
-    tag: "Active",
-  },
-  {
-    flag: "🇿🇼",
-    name: "Zimbabwe",
-    ports: "Harare · Beit Bridge · Chirundu",
+    ports: "Lubumbashi · Kasumbalesa",
     tag: "Active",
   },
 ];
@@ -139,10 +133,10 @@ const HOW_IT_WORKS = [
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
 const statusBadge: Record<CaseStatus, string> = {
-  "At customs": "bg-[#f0a830]/10 text-[#f0a830]",
-  Released: "bg-[#b5cc18]/10 text-[#b5cc18]",
-  Submitted: "bg-[#7ab8e8]/10 text-[#7ab8e8]",
-  "Agent assigned": "bg-[#7ab8e8]/10 text-[#7ab8e8]",
+  "At customs": "bg-[#d98f2b]/10 text-[#a3690f]",
+  Released: "bg-[#2955c8]/10 text-[#2955c8]",
+  Submitted: "bg-[#5c6a7a]/10 text-[#5c6a7a]",
+  "Agent assigned": "bg-[#5c6a7a]/10 text-[#5c6a7a]",
 };
 
 const EMPTY_FORM: ClearanceForm = {
@@ -210,43 +204,43 @@ export default function CustomsClearingPage() {
   ];
 
   return (
-    <main className="bg-[#111111] text-white min-h-screen font-sans">
+    <main className="bg-[#f7f4ee] text-[#10233d] min-h-screen font-sans">
       <NavBar />
 
       {/* Hero */}
-      <section className="px-8 py-16 border-b border-white/10">
+      <section className="px-8 py-16 border-b border-[#e2ddd0]">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-full px-3 py-1 text-xs text-[#b5cc18] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18]" />
+          <div className="inline-flex items-center gap-2 bg-[#d98f2b]/10 border border-[#d98f2b]/30 rounded-full px-3 py-1 text-xs text-[#a3690f] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d98f2b]" />
             Customs Clearing
           </div>
           <h1 className="text-4xl md:text-5xl font-medium leading-[1.1] mb-5">
             Clear your cargo,{" "}
-            <span className="text-[#b5cc18]">stress-free</span>
+            <span className="text-[#2955c8]">stress-free</span>
           </h1>
-          <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+          <p className="text-[#5c6a7a] text-sm leading-relaxed max-w-lg">
             Submit your shipment details and our licensed agents handle every
             step — from duty calculation to final release across Zambia,
-            Tanzania, DRC, and Zimbabwe.
+            Tanzania, and the DRC.
           </p>
         </div>
       </section>
 
       {/* Tabs */}
-      <div className="flex border-b border-white/10 px-8 overflow-x-auto">
+      <div className="flex border-b border-[#e2ddd0] px-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-4 text-xs whitespace-nowrap border-b-2 transition-colors flex items-center gap-2 ${
               activeTab === tab.id
-                ? "border-[#b5cc18] text-[#b5cc18]"
-                : "border-transparent text-white/40 hover:text-white/70"
+                ? "border-[#2955c8] text-[#2955c8]"
+                : "border-transparent text-[#5c6a7a] hover:text-[#10233d]"
             }`}
           >
             {tab.label}
             {tab.badge !== undefined && tab.badge > 0 && (
-              <span className="bg-[#b5cc18]/15 text-[#b5cc18] rounded-full px-2 py-0.5 text-[9px]">
+              <span className="bg-[#2955c8]/10 text-[#2955c8] rounded-full px-2 py-0.5 text-[9px]">
                 {tab.badge}
               </span>
             )}
@@ -258,19 +252,19 @@ export default function CustomsClearingPage() {
         {/* ── New clearance form ── */}
         {activeTab === "new" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               01
             </p>
             <h2 className="text-2xl font-medium mb-2">
               Start a clearance request
             </h2>
-            <p className="text-sm text-white/45 mb-8">
-              Fill in your shipment details and well assign a licensed agent
-              within the hour.
+            <p className="text-sm text-[#5c6a7a] mb-8">
+              Fill in your shipment details and we&apos;ll assign a licensed
+              agent within the hour.
             </p>
 
             {submitted && (
-              <div className="mb-6 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-lg px-4 py-3 text-sm text-[#b5cc18]">
+              <div className="mb-6 bg-[#2955c8]/10 border border-[#2955c8]/30 rounded-lg px-4 py-3 text-sm text-[#2955c8]">
                 ✓ Request submitted! We will be in touch shortly.
               </div>
             )}
@@ -278,18 +272,18 @@ export default function CustomsClearingPage() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               {/* Shipment details */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="text-[10px] tracking-[2px] uppercase text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                <legend className="text-[10px] tracking-[2px] uppercase text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                   Shipment details
                 </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Cargo type
                     </label>
                     <select
                       value={form.cargoType}
                       onChange={(e) => updateForm("cargoType", e.target.value)}
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] focus:outline-none focus:border-[#2955c8]/50"
                       required
                     >
                       <option value="">Select type</option>
@@ -301,13 +295,13 @@ export default function CustomsClearingPage() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Country of origin
                     </label>
                     <select
                       value={form.origin}
                       onChange={(e) => updateForm("origin", e.target.value)}
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] focus:outline-none focus:border-[#2955c8]/50"
                       required
                     >
                       <option value="">Select country</option>
@@ -321,25 +315,24 @@ export default function CustomsClearingPage() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Entry point
                     </label>
                     <select
                       value={form.entryPoint}
                       onChange={(e) => updateForm("entryPoint", e.target.value)}
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] focus:outline-none focus:border-[#2955c8]/50"
                       required
                     >
                       <option value="">Select border</option>
                       <option>Nakonde (ZM/TZ)</option>
-                      <option>Chirundu (ZM/ZW)</option>
                       <option>Kasumbalesa (ZM/DRC)</option>
-                      <option>Mchinji (ZM/MW)</option>
+                      <option>Chirundu (ZM/ZW)</option>
                     </select>
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Estimated value (USD)
                     </label>
                     <input
@@ -347,7 +340,7 @@ export default function CustomsClearingPage() {
                       placeholder=""
                       value={form.value}
                       onChange={(e) => updateForm("value", e.target.value)}
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
                     />
                   </div>
                 </div>
@@ -356,13 +349,13 @@ export default function CustomsClearingPage() {
               {/* Vehicle details */}
               {form.cargoType === "Motor vehicle" && (
                 <fieldset className="flex flex-col gap-4">
-                  <legend className="text-[10px] tracking-[2px] uppercase text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                  <legend className="text-[10px] tracking-[2px] uppercase text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                     Vehicle details
                   </legend>
                   <div className="grid grid-cols-3 gap-4">
                     {(["make", "model", "year"] as const).map((field) => (
                       <div key={field} className="flex flex-col gap-1.5">
-                        <label className="text-[10px] uppercase tracking-[1.5px] text-white/35 capitalize">
+                        <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a] capitalize">
                           {field}
                         </label>
                         <input
@@ -370,7 +363,7 @@ export default function CustomsClearingPage() {
                           placeholder=""
                           value={form[field]}
                           onChange={(e) => updateForm(field, e.target.value)}
-                          className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+                          className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
                         />
                       </div>
                     ))}
@@ -380,12 +373,12 @@ export default function CustomsClearingPage() {
 
               {/* Contact */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="text-[10px] tracking-[2px] uppercase text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                <legend className="text-[10px] tracking-[2px] uppercase text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                   Your details
                 </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Full name
                     </label>
                     <input
@@ -394,11 +387,11 @@ export default function CustomsClearingPage() {
                       value={form.name}
                       onChange={(e) => updateForm("name", e.target.value)}
                       required
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Phone / WhatsApp
                     </label>
                     <input
@@ -407,11 +400,11 @@ export default function CustomsClearingPage() {
                       value={form.phone}
                       onChange={(e) => updateForm("phone", e.target.value)}
                       required
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5 md:col-span-2">
-                    <label className="text-[10px] uppercase tracking-[1.5px] text-white/35">
+                    <label className="text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]">
                       Additional notes
                     </label>
                     <textarea
@@ -419,7 +412,7 @@ export default function CustomsClearingPage() {
                       placeholder="Any special requirements, document notes, or questions…"
                       value={form.notes}
                       onChange={(e) => updateForm("notes", e.target.value)}
-                      className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50 resize-none"
+                      className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50 resize-none"
                     />
                   </div>
                 </div>
@@ -427,7 +420,7 @@ export default function CustomsClearingPage() {
 
               <button
                 type="submit"
-                className="bg-[#b5cc18] text-[#111] text-sm font-medium py-3 rounded-md hover:bg-[#c8e01a] transition-colors"
+                className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
               >
                 Submit clearance request →
               </button>
@@ -438,11 +431,11 @@ export default function CustomsClearingPage() {
         {/* ── My cases ── */}
         {activeTab === "cases" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Active cases
             </p>
             <h2 className="text-2xl font-medium mb-2">Your clearances</h2>
-            <p className="text-sm text-white/45 mb-8">
+            <p className="text-sm text-[#5c6a7a] mb-8">
               Track the progress of all your active and recent clearance jobs.
             </p>
             <div className="flex flex-col gap-4">
@@ -451,12 +444,12 @@ export default function CustomsClearingPage() {
                 return (
                   <div
                     key={c.id}
-                    className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5"
+                    className="bg-white border border-[#e2ddd0] rounded-xl p-5"
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div>
                         <p className="text-sm font-medium">{c.title}</p>
-                        <p className="text-[10px] text-white/35 mt-0.5">
+                        <p className="text-[10px] text-[#5c6a7a] mt-0.5">
                           REF: {c.ref} · {c.border}
                         </p>
                       </div>
@@ -467,28 +460,27 @@ export default function CustomsClearingPage() {
                         {c.status}
                       </span>
                     </div>
-                    <div className="h-1 bg-white/8 rounded-full overflow-hidden mb-3">
+                    <div className="h-1 bg-[#e2ddd0] rounded-full overflow-hidden mb-3">
                       <div
-                        className="h-full bg-[#b5cc18] rounded-full transition-all"
+                        className="h-full bg-[#2955c8] rounded-full transition-all"
                         style={{ width: `${pct}%` }}
                       />
                     </div>
-                    <div className="flex gap-5 text-[10px] text-white/35">
+                    <div className="flex gap-5 text-[10px] text-[#5c6a7a]">
                       <span>
                         Step{" "}
-                        <strong className="text-white/60">
+                        <strong className="text-[#10233d]">
                           {c.step} of {c.totalSteps}
                         </strong>
                       </span>
                       <span>
-                        Agent:{" "}
-                        <strong className="text-white/60">{c.agent}</strong>
+                        Agent: <strong className="text-[#10233d]">{c.agent}</strong>
                       </span>
                       <span>
                         {c.status === "Released"
                           ? "Released:"
                           : "Est. release:"}{" "}
-                        <strong className="text-white/60">{c.eta}</strong>
+                        <strong className="text-[#10233d]">{c.eta}</strong>
                       </span>
                     </div>
                   </div>
@@ -497,23 +489,23 @@ export default function CustomsClearingPage() {
             </div>
 
             {/* How it works */}
-            <div className="mt-10 bg-[#b5cc18]/5 border border-[#b5cc18]/15 rounded-xl p-7">
-              <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-5">
+            <div className="mt-10 bg-white border border-[#e2ddd0] rounded-xl p-7">
+              <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-5">
                 How it works
               </p>
               <div className="flex flex-col gap-5">
                 {HOW_IT_WORKS.map((s, i) => (
                   <div key={s.step} className="flex gap-4">
-                    <div className="w-7 h-7 rounded-full bg-[#b5cc18] flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-[#111] text-xs font-semibold">
+                    <div className="w-7 h-7 rounded-full bg-[#2955c8] flex items-center justify-center shrink-0 mt-0.5">
+                      <span className="text-white text-xs font-semibold">
                         {i + 1}
                       </span>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-white mb-0.5">
+                      <p className="text-sm font-medium text-[#10233d] mb-0.5">
                         {s.title}
                       </p>
-                      <p className="text-xs text-white/40">{s.desc}</p>
+                      <p className="text-xs text-[#5c6a7a]">{s.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -525,11 +517,11 @@ export default function CustomsClearingPage() {
         {/* ── Documents needed ── */}
         {activeTab === "docs" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Checklist
             </p>
             <h2 className="text-2xl font-medium mb-2">Documents to prepare</h2>
-            <p className="text-sm text-white/45 mb-8">
+            <p className="text-sm text-[#5c6a7a] mb-8">
               Have these ready before submitting your request to speed up the
               process.
             </p>
@@ -537,21 +529,21 @@ export default function CustomsClearingPage() {
               {DOCUMENTS.map((doc) => (
                 <div
                   key={doc.name}
-                  className="flex items-start gap-3 bg-[#1a1a1a] border border-white/7 rounded-xl p-4"
+                  className="flex items-start gap-3 bg-white border border-[#e2ddd0] rounded-xl p-4"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-[#b5cc18]/10 flex items-center justify-center shrink-0 text-base">
+                  <div className="w-8 h-8 rounded-lg bg-[#2955c8]/10 flex items-center justify-center shrink-0 text-base">
                     {doc.icon}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white mb-0.5">
+                    <p className="text-sm font-medium text-[#10233d] mb-0.5">
                       {doc.name}
                     </p>
-                    <p className="text-xs text-white/35">{doc.note}</p>
+                    <p className="text-xs text-[#5c6a7a]">{doc.note}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="bg-[#b5cc18]/6 border border-[#b5cc18]/15 rounded-xl px-5 py-4 text-sm text-white/50 leading-relaxed">
+            <div className="bg-[#d98f2b]/10 border border-[#d98f2b]/25 rounded-xl px-5 py-4 text-sm text-[#10233d]/80 leading-relaxed">
               💡 Missing a document? Our agents can often assist with obtaining
               replacements or equivalents. Include a note when submitting your
               request.
@@ -562,25 +554,26 @@ export default function CustomsClearingPage() {
         {/* ── Coverage ── */}
         {activeTab === "countries" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Coverage
             </p>
             <h2 className="text-2xl font-medium mb-2">Where we operate</h2>
-            <p className="text-sm text-white/45 mb-8">
-              Licensed agents at all major border posts across the region.
+            <p className="text-sm text-[#5c6a7a] mb-8">
+              Licensed agents at the major posts along the Great North Road
+              corridor.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {COUNTRIES.map((c) => (
                 <div
                   key={c.name}
-                  className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5"
+                  className="bg-white border border-[#e2ddd0] rounded-xl p-5"
                 >
                   <div className="text-2xl mb-3">{c.flag}</div>
                   <p className="text-sm font-medium mb-1">{c.name}</p>
-                  <p className="text-xs text-white/35 leading-relaxed mb-3">
+                  <p className="text-xs text-[#5c6a7a] leading-relaxed mb-3">
                     {c.ports}
                   </p>
-                  <span className="text-[9px] bg-[#b5cc18]/10 text-[#b5cc18] rounded px-2 py-1 tracking-wider">
+                  <span className="text-[9px] bg-[#2955c8]/10 text-[#2955c8] rounded px-2 py-1 tracking-wider">
                     {c.tag}
                   </span>
                 </div>

@@ -68,12 +68,12 @@ export default function CarViewPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#111111] min-h-screen text-white font-sans">
+      <main className="bg-[#f7f4ee] min-h-screen text-[#10233d] font-sans">
         <NavBar />
         <div className="flex items-center justify-center h-[70vh]">
           <div className="flex flex-col items-center gap-4">
-            <div className="w-10 h-10 border-2 border-[#b5cc18]/30 border-t-[#b5cc18] rounded-full animate-spin" />
-            <p className="text-white/30 text-sm tracking-widest uppercase">
+            <div className="w-10 h-10 border-2 border-[#2955c8]/25 border-t-[#2955c8] rounded-full animate-spin" />
+            <p className="text-[#5c6a7a] text-sm tracking-widest uppercase">
               Loading vehicle
             </p>
           </div>
@@ -84,13 +84,13 @@ export default function CarViewPage() {
 
   if (!car) {
     return (
-      <main className="bg-[#111111] min-h-screen text-white font-sans">
+      <main className="bg-[#f7f4ee] min-h-screen text-[#10233d] font-sans">
         <NavBar />
         <div className="flex flex-col items-center justify-center h-[70vh] gap-4">
-          <p className="text-white/30 text-lg">Vehicle not found.</p>
+          <p className="text-[#5c6a7a] text-lg">Vehicle not found.</p>
           <Link
             href="/cars"
-            className="text-[#b5cc18] text-sm underline underline-offset-4"
+            className="text-[#2955c8] text-sm underline underline-offset-4"
           >
             ← Back to stock
           </Link>
@@ -108,18 +108,18 @@ export default function CarViewPage() {
   ];
 
   return (
-    <main className="bg-[#111111] text-white min-h-screen font-sans">
+    <main className="bg-[#f7f4ee] text-[#10233d] min-h-screen font-sans">
       <NavBar />
 
       {/* ── Breadcrumb ── */}
-      <div className="px-6 md:px-10 pt-6 pb-2 flex items-center gap-2 text-xs text-white/30">
-        <Link href="/cars" className="hover:text-[#b5cc18] transition-colors">
+      <div className="px-6 md:px-10 pt-6 pb-2 flex items-center gap-2 text-xs text-[#5c6a7a]">
+        <Link href="/cars" className="hover:text-[#2955c8] transition-colors">
           Stock
         </Link>
         <span>/</span>
-        <span className="text-white/50">{car.make}</span>
+        <span className="text-[#5c6a7a]">{car.make}</span>
         <span>/</span>
-        <span className="text-white/70">{car.model}</span>
+        <span className="text-[#10233d]">{car.model}</span>
       </div>
 
       <div className="px-6 md:px-10 pb-16 grid lg:grid-cols-[1fr_420px] gap-10 mt-4">
@@ -127,7 +127,7 @@ export default function CarViewPage() {
         <div className="flex flex-col gap-4">
           {/* Main image */}
           <div
-            className="relative rounded-2xl overflow-hidden bg-[#1a1a1a] border border-white/10 cursor-zoom-in select-none"
+            className="relative rounded-2xl overflow-hidden bg-white border border-[#e2ddd0] cursor-zoom-in select-none"
             style={{ aspectRatio: "16/9" }}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -145,15 +145,15 @@ export default function CarViewPage() {
             ))}
 
             {/* Gradient overlay bottom */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#10233d]/40 via-transparent to-transparent pointer-events-none" />
 
             {/* Badge */}
-            <span className="absolute top-4 left-4 bg-[#b5cc18] text-[#111] text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wide uppercase z-10">
+            <span className="absolute top-4 left-4 bg-[#2955c8] text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wide uppercase z-10">
               {car.badge}
             </span>
 
             {/* Image counter */}
-            <span className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm text-white/70 text-xs px-3 py-1 rounded-full z-10">
+            <span className="absolute top-4 right-4 bg-[#10233d]/70 backdrop-blur-sm text-white/80 text-xs px-3 py-1 rounded-full z-10">
               {activeIndex + 1} / {car.images.length}
             </span>
 
@@ -165,7 +165,7 @@ export default function CarViewPage() {
                     e.stopPropagation();
                     prev();
                   }}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-[#b5cc18] hover:text-[#111] transition-all z-10"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border border-[#e2ddd0] flex items-center justify-center text-[#10233d] hover:bg-[#2955c8] hover:text-white transition-all z-10"
                   aria-label="Previous image"
                 >
                   <svg
@@ -185,7 +185,7 @@ export default function CarViewPage() {
                     e.stopPropagation();
                     next();
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white hover:bg-[#b5cc18] hover:text-[#111] transition-all z-10"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm border border-[#e2ddd0] flex items-center justify-center text-[#10233d] hover:bg-[#2955c8] hover:text-white transition-all z-10"
                   aria-label="Next image"
                 >
                   <svg
@@ -214,8 +214,8 @@ export default function CarViewPage() {
                   }}
                   className={`rounded-full transition-all duration-300 ${
                     i === activeIndex
-                      ? "w-5 h-1.5 bg-[#b5cc18]"
-                      : "w-1.5 h-1.5 bg-white/30 hover:bg-white/60"
+                      ? "w-5 h-1.5 bg-[#2955c8]"
+                      : "w-1.5 h-1.5 bg-white/70 hover:bg-white"
                   }`}
                   aria-label={`View image ${i + 1}`}
                 />
@@ -235,7 +235,7 @@ export default function CarViewPage() {
                   onClick={() => setActiveIndex(i)}
                   className={`flex-shrink-0 w-20 h-14 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                     i === activeIndex
-                      ? "border-[#b5cc18] scale-100 opacity-100"
+                      ? "border-[#2955c8] scale-100 opacity-100"
                       : "border-transparent opacity-50 hover:opacity-80"
                   }`}
                 >
@@ -254,42 +254,44 @@ export default function CarViewPage() {
         <div className="flex flex-col gap-6">
           {/* Title & Price */}
           <div>
-            <p className="text-[11px] text-[#b5cc18]/70 tracking-[3px] uppercase mb-1">
+            <p className="text-[11px] text-[#2955c8]/80 tracking-[3px] uppercase mb-1">
               {car.make}
             </p>
-            <h1 className="text-3xl md:text-4xl font-semibold text-white leading-tight mb-3">
+            <h1 className="text-3xl md:text-4xl font-semibold text-[#10233d] leading-tight mb-3">
               {car.model}
             </h1>
             <div className="flex items-center gap-3">
-              <span className="text-3xl font-bold text-[#b5cc18]">
+              <span className="text-3xl font-bold text-[#2955c8]">
                 K{Number(car.price).toLocaleString()}
               </span>
-              <span className="text-xs text-white/30 bg-white/5 px-2 py-1 rounded-md">
+              <span className="text-xs text-[#5c6a7a] bg-[#f7f4ee] px-2 py-1 rounded-md">
                 {car.fuel}
               </span>
             </div>
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-white/8" />
+          <div className="h-px bg-[#e2ddd0]" />
 
           {/* Specs grid */}
           <div>
-            <p className="text-[10px] text-white/30 tracking-[2.5px] uppercase mb-3">
+            <p className="text-[10px] text-[#5c6a7a] tracking-[2.5px] uppercase mb-3">
               Specifications
             </p>
             <div className="grid grid-cols-2 gap-2.5">
               {specs.map((s) => (
                 <div
                   key={s.label}
-                  className="bg-[#1a1a1a] border border-white/8 rounded-xl px-4 py-3 flex items-center gap-3"
+                  className="bg-white border border-[#e2ddd0] rounded-xl px-4 py-3 flex items-center gap-3"
                 >
                   <span className="text-xl">{s.icon}</span>
                   <div>
-                    <p className="text-[10px] text-white/30 uppercase tracking-wide">
+                    <p className="text-[10px] text-[#5c6a7a] uppercase tracking-wide">
                       {s.label}
                     </p>
-                    <p className="text-sm text-white font-medium">{s.value}</p>
+                    <p className="text-sm text-[#10233d] font-medium">
+                      {s.value}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -297,21 +299,21 @@ export default function CarViewPage() {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-white/8" />
+          <div className="h-px bg-[#e2ddd0]" />
 
           {/* CTA Buttons */}
           <div className="flex flex-col gap-3">
             <a
-              href="tel:+260000000000"
-              className="w-full bg-[#b5cc18] text-[#111] text-sm font-semibold py-3.5 rounded-xl hover:bg-[#c8e020] active:scale-[0.98] transition-all text-center"
+              href="tel:+260777547157"
+              className="w-full bg-[#2955c8] text-white text-sm font-semibold py-3.5 rounded-xl hover:bg-[#1f45a8] active:scale-[0.98] transition-all text-center"
             >
               📞 Call to Enquire
             </a>
             <a
-              href="https://wa.me/260000000000"
+              href="https://wa.me/260777547157"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full bg-[#1a1a1a] border border-white/10 text-white text-sm font-medium py-3.5 rounded-xl hover:border-[#b5cc18]/40 hover:text-[#b5cc18] active:scale-[0.98] transition-all text-center"
+              className="w-full bg-white border border-[#e2ddd0] text-[#10233d] text-sm font-medium py-3.5 rounded-xl hover:border-[#2955c8]/40 hover:text-[#2955c8] active:scale-[0.98] transition-all text-center"
             >
               💬 WhatsApp Us
             </a>
@@ -326,10 +328,10 @@ export default function CarViewPage() {
             ].map((b) => (
               <div
                 key={b.text}
-                className="flex flex-col items-center gap-1.5 bg-white/3 border border-white/6 rounded-lg py-3 text-center"
+                className="flex flex-col items-center gap-1.5 bg-white border border-[#e2ddd0] rounded-lg py-3 text-center"
               >
                 <span className="text-lg">{b.icon}</span>
-                <p className="text-[10px] text-white/40 leading-tight">
+                <p className="text-[10px] text-[#5c6a7a] leading-tight">
                   {b.text}
                 </p>
               </div>
@@ -341,7 +343,7 @@ export default function CarViewPage() {
       {/* ── Lightbox / Zoom Modal ── */}
       {isZoomed && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-[#10233d]/95 z-50 flex items-center justify-center"
           onClick={() => setIsZoomed(false)}
         >
           <button
@@ -357,7 +359,7 @@ export default function CarViewPage() {
               e.stopPropagation();
               prev();
             }}
-            className="absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#b5cc18] hover:text-[#111] flex items-center justify-center text-white transition-all"
+            className="absolute left-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#2955c8] hover:text-white flex items-center justify-center text-white transition-all"
           >
             <svg
               width="16"
@@ -384,7 +386,7 @@ export default function CarViewPage() {
               e.stopPropagation();
               next();
             }}
-            className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#b5cc18] hover:text-[#111] flex items-center justify-center text-white transition-all"
+            className="absolute right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-[#2955c8] hover:text-white flex items-center justify-center text-white transition-all"
           >
             <svg
               width="16"
@@ -410,7 +412,7 @@ export default function CarViewPage() {
                 }}
                 className={`w-12 h-9 rounded-md overflow-hidden border-2 transition-all ${
                   i === activeIndex
-                    ? "border-[#b5cc18]"
+                    ? "border-[#2955c8]"
                     : "border-transparent opacity-50"
                 }`}
               >
@@ -422,16 +424,16 @@ export default function CarViewPage() {
       )}
 
       {/* ── Footer ── */}
-      <footer className="border-t border-white/10 px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-        <p className="text-xs text-white/25">
-          © 2025 RKK Logistics Limited. All rights reserved.
+      <footer className="border-t border-[#e2ddd0] px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="text-xs text-[#5c6a7a]">
+          © 2026 GreatNorth Logistics and Freight Ltd. All rights reserved.
         </p>
         <div className="flex gap-5">
           {["Privacy", "Terms", "Services"].map((l) => (
             <a
               key={l}
               href="#"
-              className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              className="text-xs text-[#5c6a7a] hover:text-[#10233d] transition-colors"
             >
               {l}
             </a>

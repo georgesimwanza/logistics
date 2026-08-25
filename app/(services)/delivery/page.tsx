@@ -56,7 +56,7 @@ interface BookingForm {
 const SHIPMENTS: Shipment[] = [
   {
     id: "1",
-    ref: "RKK-T-0091",
+    ref: "GNL-T-0091",
     title: "Toyota Land Cruiser 2020 — vehicle delivery",
     origin: "Dar es Salaam",
     destination: "Lusaka",
@@ -67,7 +67,7 @@ const SHIPMENTS: Shipment[] = [
   },
   {
     id: "2",
-    ref: "RKK-T-0088",
+    ref: "GNL-T-0088",
     title: "Building materials — 3 pallets",
     origin: "Nakonde",
     destination: "Ndola",
@@ -78,7 +78,7 @@ const SHIPMENTS: Shipment[] = [
   },
   {
     id: "3",
-    ref: "RKK-T-0083",
+    ref: "GNL-T-0083",
     title: "Electronics — 12 boxes",
     origin: "Lubumbashi",
     destination: "Lusaka",
@@ -116,7 +116,7 @@ const FLEET: FleetVehicle[] = [
     subtitle: "Long-haul cross-border",
     specs: [
       { label: "Payload", value: "Up to 30 tonnes" },
-      { label: "Routes", value: "ZM · TZ · DRC · ZW" },
+      { label: "Routes", value: "ZM · TZ · DRC" },
       { label: "Tracking", value: "Real-time GPS" },
     ],
     available: true,
@@ -199,16 +199,16 @@ const EMPTY_FORM: BookingForm = {
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
 const statusBadge: Record<ShipmentStatus, string> = {
-  "In transit": "bg-[#f0a830]/10 text-[#f0a830]",
-  "At border": "bg-[#7ab8e8]/10 text-[#7ab8e8]",
-  Delivered: "bg-[#b5cc18]/10 text-[#b5cc18]",
-  Booked: "bg-white/6 text-white/40",
+  "In transit": "bg-[#d98f2b]/10 text-[#a3690f]",
+  "At border": "bg-[#2955c8]/10 text-[#2955c8]",
+  Delivered: "bg-[#2955c8]/10 text-[#2955c8]",
+  Booked: "bg-[#5c6a7a]/10 text-[#5c6a7a]",
 };
 
 const inputCls =
-  "bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50";
+  "bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50";
 
-const labelCls = "text-[10px] uppercase tracking-[1.5px] text-white/35";
+const labelCls = "text-[10px] uppercase tracking-[1.5px] text-[#5c6a7a]";
 
 // ── Page ───────────────────────────────────────────────────────────────────────
 
@@ -267,35 +267,35 @@ export default function TransportationPage() {
   ];
 
   return (
-    <main className="bg-[#111111] text-white min-h-screen font-sans">
+    <main className="bg-[#f7f4ee] text-[#10233d] min-h-screen font-sans">
       <NavBar />
 
       {/* Hero */}
-      <section className="px-8 py-16 border-b border-white/10">
+      <section className="px-8 py-16 border-b border-[#e2ddd0]">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-full px-3 py-1 text-xs text-[#b5cc18] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18]" />
+          <div className="inline-flex items-center gap-2 bg-[#d98f2b]/10 border border-[#d98f2b]/30 rounded-full px-3 py-1 text-xs text-[#a3690f] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d98f2b]" />
             Transportation &amp; Freight
           </div>
           <h1 className="text-4xl md:text-5xl font-medium leading-[1.1] mb-5">
             Move anything,{" "}
-            <span className="text-[#b5cc18]">anywhere in the region</span>
+            <span className="text-[#2955c8]">anywhere on the corridor</span>
           </h1>
-          <p className="text-white/50 text-sm leading-relaxed max-w-lg mb-8">
+          <p className="text-[#5c6a7a] text-sm leading-relaxed max-w-lg mb-8">
             Cross-border road freight, vehicle delivery, and last-mile cargo —
             tracked in real time from pickup to drop-off.
           </p>
           <div className="flex gap-8">
             {[
-              { val: "4", label: "Countries" },
-              { val: "12+", label: "Border posts" },
+              { val: "3", label: "Countries" },
+              { val: "2", label: "Border posts" },
               { val: "48h", label: "Avg. delivery" },
             ].map((s) => (
               <div key={s.label} className="flex flex-col gap-1">
-                <span className="text-2xl font-medium text-[#b5cc18]">
+                <span className="text-2xl font-medium text-[#2955c8]">
                   {s.val}
                 </span>
-                <span className="text-[10px] uppercase tracking-widest text-white/35">
+                <span className="text-[10px] uppercase tracking-widest text-[#5c6a7a]">
                   {s.label}
                 </span>
               </div>
@@ -305,20 +305,20 @@ export default function TransportationPage() {
       </section>
 
       {/* Tabs */}
-      <div className="flex border-b border-white/10 px-8 overflow-x-auto">
+      <div className="flex border-b border-[#e2ddd0] px-8 overflow-x-auto">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={`px-5 py-4 text-xs whitespace-nowrap border-b-2 transition-colors flex items-center gap-2 ${
               activeTab === tab.id
-                ? "border-[#b5cc18] text-[#b5cc18]"
-                : "border-transparent text-white/40 hover:text-white/70"
+                ? "border-[#2955c8] text-[#2955c8]"
+                : "border-transparent text-[#5c6a7a] hover:text-[#10233d]"
             }`}
           >
             {tab.label}
             {tab.badge !== undefined && tab.badge > 0 && (
-              <span className="bg-[#b5cc18]/15 text-[#b5cc18] rounded-full px-2 py-0.5 text-[9px]">
+              <span className="bg-[#2955c8]/10 text-[#2955c8] rounded-full px-2 py-0.5 text-[9px]">
                 {tab.badge}
               </span>
             )}
@@ -330,29 +330,29 @@ export default function TransportationPage() {
         {/* ── Book transport ── */}
         {activeTab === "book" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               03
             </p>
             <h2 className="text-2xl font-medium mb-2">Book a transport</h2>
-            <p className="text-sm text-white/45 mb-8">
-              Select your service type, fill in the details, and well confirm
-              within the hour.
+            <p className="text-sm text-[#5c6a7a] mb-8">
+              Select your service type, fill in the details, and we&apos;ll
+              confirm within the hour.
             </p>
 
             {submitted && (
-              <div className="mb-6 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-lg px-4 py-3 text-sm text-[#b5cc18]">
-                ✓ Booking received! Well confirm shortly.
+              <div className="mb-6 bg-[#2955c8]/10 border border-[#2955c8]/30 rounded-lg px-4 py-3 text-sm text-[#2955c8]">
+                ✓ Booking received! We&apos;ll confirm shortly.
               </div>
             )}
 
             {submitError && (
-              <div className="mb-6 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-sm text-red-400">
+              <div className="mb-6 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-600">
                 ✕ {submitError}
               </div>
             )}
 
             {/* Service type selector */}
-            <p className="text-[10px] uppercase tracking-[2px] text-white/25 mb-3 pb-2 border-b border-white/6">
+            <p className="text-[10px] uppercase tracking-[2px] text-[#5c6a7a]/70 mb-3 pb-2 border-b border-[#e2ddd0]">
               Service type
             </p>
             <div className="grid grid-cols-3 gap-3 mb-8">
@@ -363,13 +363,13 @@ export default function TransportationPage() {
                   onClick={() => updateForm("serviceType", st.id)}
                   className={`rounded-xl p-4 text-center border transition-colors ${
                     form.serviceType === st.id
-                      ? "border-[#b5cc18] bg-[#b5cc18]/6"
-                      : "border-white/8 bg-[#1a1a1a] hover:border-white/20"
+                      ? "border-[#2955c8] bg-[#2955c8]/5"
+                      : "border-[#e2ddd0] bg-white hover:border-[#2955c8]/30"
                   }`}
                 >
                   <div className="text-2xl mb-2">{st.icon}</div>
                   <div className="text-xs font-medium mb-1">{st.name}</div>
-                  <div className="text-[10px] text-white/35">{st.desc}</div>
+                  <div className="text-[10px] text-[#5c6a7a]">{st.desc}</div>
                 </button>
               ))}
             </div>
@@ -377,7 +377,7 @@ export default function TransportationPage() {
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               {/* Route */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                <legend className="text-[10px] uppercase tracking-[2px] text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                   Route
                 </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -394,7 +394,6 @@ export default function TransportationPage() {
                       <option>Lusaka, Zambia</option>
                       <option>Dar es Salaam, Tanzania</option>
                       <option>Lubumbashi, DRC</option>
-                      <option>Harare, Zimbabwe</option>
                     </select>
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -411,7 +410,6 @@ export default function TransportationPage() {
                       <option>Ndola, Zambia</option>
                       <option>Dar es Salaam, Tanzania</option>
                       <option>Lubumbashi, DRC</option>
-                      <option>Harare, Zimbabwe</option>
                     </select>
                   </div>
                   <div className="flex flex-col gap-1.5">
@@ -439,7 +437,7 @@ export default function TransportationPage() {
 
               {/* Cargo details */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                <legend className="text-[10px] uppercase tracking-[2px] text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                   Cargo details
                 </legend>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -486,7 +484,7 @@ export default function TransportationPage() {
 
               {/* Contact */}
               <fieldset className="flex flex-col gap-4">
-                <legend className="text-[10px] uppercase tracking-[2px] text-white/25 mb-1 pb-2 border-b border-white/6 w-full">
+                <legend className="text-[10px] uppercase tracking-[2px] text-[#5c6a7a]/70 mb-1 pb-2 border-b border-[#e2ddd0] w-full">
                   Your details
                 </legend>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -528,7 +526,7 @@ export default function TransportationPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="bg-[#b5cc18] text-[#111] text-sm font-medium py-3 rounded-md hover:bg-[#c8e01a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {submitting ? "Sending…" : "Request transport →"}
               </button>
@@ -539,11 +537,11 @@ export default function TransportationPage() {
         {/* ── My shipments ── */}
         {activeTab === "orders" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Active &amp; recent
             </p>
             <h2 className="text-2xl font-medium mb-2">Your shipments</h2>
-            <p className="text-sm text-white/45 mb-8">
+            <p className="text-sm text-[#5c6a7a] mb-8">
               Track the live position and status of all your freight and
               deliveries.
             </p>
@@ -551,12 +549,12 @@ export default function TransportationPage() {
               {SHIPMENTS.map((s) => (
                 <div
                   key={s.id}
-                  className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5"
+                  className="bg-white border border-[#e2ddd0] rounded-xl p-5"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <p className="text-sm font-medium">{s.title}</p>
-                      <p className="text-[10px] text-white/35 mt-0.5">
+                      <p className="text-[10px] text-[#5c6a7a] mt-0.5">
                         REF: {s.ref}
                       </p>
                     </div>
@@ -568,31 +566,30 @@ export default function TransportationPage() {
                     </span>
                   </div>
                   {/* Route row */}
-                  <div className="flex items-center gap-3 mb-3 text-xs text-white/50">
-                    <span className="w-2 h-2 rounded-full border-2 border-[#b5cc18] shrink-0" />
+                  <div className="flex items-center gap-3 mb-3 text-xs text-[#5c6a7a]">
+                    <span className="w-2 h-2 rounded-full border-2 border-[#2955c8] shrink-0" />
                     <span>{s.origin}</span>
-                    <div className="flex-1 h-px bg-white/10 relative">
-                      <span className="absolute right-0 -top-2 text-white/20 text-xs">
+                    <div className="flex-1 h-px bg-[#e2ddd0] relative">
+                      <span className="absolute right-0 -top-2 text-[#5c6a7a]/50 text-xs">
                         →
                       </span>
                     </div>
-                    <span className="w-2 h-2 rounded-full border border-white/30 bg-white/15 shrink-0" />
+                    <span className="w-2 h-2 rounded-full border border-[#e2ddd0] bg-[#5c6a7a]/20 shrink-0" />
                     <span>{s.destination}</span>
                   </div>
-                  <div className="flex gap-5 text-[10px] text-white/35">
+                  <div className="flex gap-5 text-[10px] text-[#5c6a7a]">
                     <span>
-                      Driver:{" "}
-                      <strong className="text-white/60">{s.driver}</strong>
+                      Driver: <strong className="text-[#10233d]">{s.driver}</strong>
                     </span>
                     <span>
                       {s.status === "Delivered"
                         ? "Delivered:"
                         : "Est. arrival:"}{" "}
-                      <strong className="text-white/60">{s.eta}</strong>
+                      <strong className="text-[#10233d]">{s.eta}</strong>
                     </span>
                     <span>
                       Insured:{" "}
-                      <strong className="text-white/60">
+                      <strong className="text-[#10233d]">
                         {s.insured ? "Yes" : "No"}
                       </strong>
                     </span>
@@ -606,19 +603,19 @@ export default function TransportationPage() {
         {/* ── Track shipment ── */}
         {activeTab === "track" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Live tracking
             </p>
             <h2 className="text-2xl font-medium mb-2">Track your shipment</h2>
-            <p className="text-sm text-white/45 mb-8">
+            <p className="text-sm text-[#5c6a7a] mb-8">
               Enter your reference number to see the latest checkpoint updates.
             </p>
 
-            <div className="bg-[#161616] border border-white/8 rounded-xl p-6">
+            <div className="bg-white border border-[#e2ddd0] rounded-xl p-6">
               <div className="flex gap-3 mb-6">
                 <input
                   type="text"
-                  placeholder="Enter reference — e.g. RKK-T-0091"
+                  placeholder="Enter reference — e.g. GNL-T-0091"
                   value={trackRef}
                   onChange={(e) => setTrackRef(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleTrack()}
@@ -626,7 +623,7 @@ export default function TransportationPage() {
                 />
                 <button
                   onClick={handleTrack}
-                  className="bg-[#b5cc18] text-[#111] text-sm font-medium px-5 rounded-md hover:bg-[#c8e01a] transition-colors whitespace-nowrap"
+                  className="bg-[#2955c8] text-white text-sm font-medium px-5 rounded-md hover:bg-[#1f45a8] transition-colors whitespace-nowrap"
                 >
                   Track →
                 </button>
@@ -634,16 +631,16 @@ export default function TransportationPage() {
 
               {trackingVisible && (
                 <>
-                  <div className="flex items-center justify-between mb-5 pb-4 border-b border-white/6">
+                  <div className="flex items-center justify-between mb-5 pb-4 border-b border-[#e2ddd0]">
                     <div>
                       <p className="text-sm font-medium">
                         Toyota Land Cruiser 2020
                       </p>
-                      <p className="text-[10px] text-white/35 mt-0.5">
-                        RKK-T-0091 · Dar es Salaam → Lusaka
+                      <p className="text-[10px] text-[#5c6a7a] mt-0.5">
+                        GNL-T-0091 · Dar es Salaam → Lusaka
                       </p>
                     </div>
-                    <span className="text-[10px] font-medium px-2.5 py-1 rounded-full bg-[#f0a830]/10 text-[#f0a830] flex items-center gap-1.5">
+                    <span className="text-[10px] font-medium px-2.5 py-1 rounded-full bg-[#d98f2b]/10 text-[#a3690f] flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-current" />
                       In transit
                     </span>
@@ -653,15 +650,15 @@ export default function TransportationPage() {
                     {TRACKING_STEPS.map((step, i) => (
                       <div key={i} className="flex gap-3 pb-5 relative">
                         {i < TRACKING_STEPS.length - 1 && (
-                          <div className="absolute left-[11px] top-6 bottom-0 w-px bg-white/7" />
+                          <div className="absolute left-[11px] top-6 bottom-0 w-px bg-[#e2ddd0]" />
                         )}
                         <div
                           className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-semibold shrink-0 z-10 ${
                             step.state === "done"
-                              ? "bg-[#b5cc18] text-[#111]"
+                              ? "bg-[#2955c8] text-white"
                               : step.state === "active"
-                                ? "bg-[#b5cc18]/15 border border-[#b5cc18] text-[#b5cc18]"
-                                : "bg-[#222] border border-white/10 text-white/25"
+                                ? "bg-[#2955c8]/10 border border-[#2955c8] text-[#2955c8]"
+                                : "bg-[#f7f4ee] border border-[#e2ddd0] text-[#5c6a7a]/50"
                           }`}
                         >
                           {step.state === "done" ? "✓" : i + 1}
@@ -670,16 +667,16 @@ export default function TransportationPage() {
                           <p
                             className={`text-sm font-medium mb-0.5 ${
                               step.state === "active"
-                                ? "text-[#b5cc18]"
+                                ? "text-[#2955c8]"
                                 : step.state === "pending"
-                                  ? "text-white/30"
-                                  : ""
+                                  ? "text-[#5c6a7a]/60"
+                                  : "text-[#10233d]"
                             }`}
                           >
                             {step.label}
                           </p>
                           <p
-                            className={`text-xs ${step.state === "pending" ? "text-white/20" : "text-white/35"}`}
+                            className={`text-xs ${step.state === "pending" ? "text-[#5c6a7a]/50" : "text-[#5c6a7a]"}`}
                           >
                             {step.time}
                           </p>
@@ -696,28 +693,28 @@ export default function TransportationPage() {
         {/* ── Fleet ── */}
         {activeTab === "fleet" && (
           <div className="max-w-2xl">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-1">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-1">
               Our vehicles
             </p>
             <h2 className="text-2xl font-medium mb-2">Fleet &amp; capacity</h2>
-            <p className="text-sm text-white/45 mb-8">
+            <p className="text-sm text-[#5c6a7a] mb-8">
               We match the right vehicle to your cargo type and route.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {FLEET.map((v) => (
                 <div
                   key={v.name}
-                  className="bg-[#1a1a1a] border border-white/8 rounded-xl p-5"
+                  className="bg-white border border-[#e2ddd0] rounded-xl p-5"
                 >
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-[#b5cc18]/10 flex items-center justify-center text-xl">
+                    <div className="w-10 h-10 rounded-lg bg-[#2955c8]/10 flex items-center justify-center text-xl">
                       {v.icon}
                     </div>
                     <span
                       className={`text-[10px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1.5 ${
                         v.available
-                          ? "bg-[#b5cc18]/10 text-[#b5cc18]"
-                          : "bg-[#f0a830]/10 text-[#f0a830]"
+                          ? "bg-[#2955c8]/10 text-[#2955c8]"
+                          : "bg-[#d98f2b]/10 text-[#a3690f]"
                       }`}
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-current" />
@@ -725,15 +722,15 @@ export default function TransportationPage() {
                     </span>
                   </div>
                   <p className="text-sm font-medium mb-1">{v.name}</p>
-                  <p className="text-xs text-white/35 mb-4">{v.subtitle}</p>
+                  <p className="text-xs text-[#5c6a7a] mb-4">{v.subtitle}</p>
                   <div className="flex flex-col gap-2">
                     {v.specs.map((spec) => (
                       <div
                         key={spec.label}
                         className="flex justify-between text-xs"
                       >
-                        <span className="text-white/35">{spec.label}</span>
-                        <span className="text-white/65">{spec.value}</span>
+                        <span className="text-[#5c6a7a]">{spec.label}</span>
+                        <span className="text-[#10233d]">{spec.value}</span>
                       </div>
                     ))}
                   </div>

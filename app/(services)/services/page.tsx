@@ -4,38 +4,38 @@ import Link from "next/link";
 
 export default function ServicesPage() {
   return (
-    <main className="bg-[#111111] text-white min-h-screen font-sans">
+    <main className="bg-[#f7f4ee] text-[#10233d] min-h-screen font-sans">
       <NavBar />
       {/* ── Hero ── */}
-      <section className="px-8 py-16 border-b border-white/10">
+      <section className="px-8 py-16 border-b border-[#e2ddd0]">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-[#b5cc18]/10 border border-[#b5cc18]/30 rounded-full px-3 py-1 text-xs text-[#b5cc18] mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18]" />
+          <div className="inline-flex items-center gap-2 bg-[#d98f2b]/10 border border-[#d98f2b]/30 rounded-full px-3 py-1 text-xs text-[#a3690f] mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#d98f2b]" />
             Explore our services
           </div>
           <h1 className="text-4xl md:text-5xl font-medium leading-[1.1] mb-5">
             Everything you need,{" "}
-            <span className="text-[#b5cc18]">under one roof</span>
+            <span className="text-[#2955c8]">under one roof</span>
           </h1>
-          <p className="text-white/50 text-sm leading-relaxed max-w-lg">
+          <p className="text-[#5c6a7a] text-sm leading-relaxed max-w-lg">
             From buying your next vehicle to clearing it through customs and
-            delivering it to your door — RKK Logistics handles every step with
-            care and expertise.
+            delivering it to your door — GreatNorth Logistics and Freight
+            handles every step with care and expertise.
           </p>
         </div>
       </section>
 
       {/* ── Car Selling Service ── */}
-      <section id="car-sales" className="px-8 py-14 border-b border-white/10">
+      <section id="car-sales" className="px-8 py-14 border-b border-[#e2ddd0]">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-2">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
               01
             </p>
             <h2 className="text-2xl font-medium mb-4">
               Car Buying &amp; Selling
             </h2>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-sm text-[#5c6a7a] leading-relaxed mb-6">
               Whether you&apos;re looking to purchase a vehicle or sell one, our
               team handles the entire process. We source quality vehicles,
               verify documentation, negotiate on your behalf, and ensure a
@@ -51,16 +51,16 @@ export default function ServicesPage() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-sm text-white/70"
+                  className="flex items-center gap-3 text-sm text-[#10233d]/80"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18] shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2955c8] shrink-0" />
                   <span dangerouslySetInnerHTML={{ __html: item }} />
                 </li>
               ))}
             </ul>
             <Link
               href={"/car_selling"}
-              className="inline-flex items-center gap-2 bg-[#b5cc18] text-[#111] text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#c8e01a] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#2955c8] text-white text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#1f45a8] transition-colors"
             >
               Enquire about a vehicle →
             </Link>
@@ -74,10 +74,10 @@ export default function ServicesPage() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="bg-[#1a1a1a] border border-white/10 rounded-xl p-5 flex flex-col gap-3"
+                className="bg-white border border-[#e2ddd0] rounded-xl p-5 flex flex-col gap-3"
               >
                 <span className="text-2xl">{c.icon}</span>
-                <p className="text-sm text-white/70">{c.label}</p>
+                <p className="text-sm text-[#5c6a7a]">{c.label}</p>
               </div>
             ))}
           </div>
@@ -85,11 +85,11 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Clearing Service ── */}
-      <section id="clearing" className="px-8 py-14 border-b border-white/10">
+      <section id="clearing" className="px-8 py-14 border-b border-[#e2ddd0]">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div className="order-2 md:order-1">
-            <div className="bg-[#b5cc18]/5 border border-[#b5cc18]/15 rounded-xl p-8">
-              <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-4">
+            <div className="bg-white border border-[#e2ddd0] rounded-xl p-8">
+              <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-4">
                 How it works
               </p>
               {[
@@ -115,17 +115,17 @@ export default function ServicesPage() {
                 },
               ].map((s) => (
                 <div key={s.step} className="flex gap-4 mb-5 last:mb-0">
-                  <div className="w-7 h-7 rounded-full bg-[#b5cc18] flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-[#111] text-xs font-semibold">
+                  <div className="w-7 h-7 rounded-full bg-[#2955c8] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-white text-xs font-semibold">
                       {s.step}
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white mb-0.5">
+                    <p className="text-sm font-medium text-[#10233d] mb-0.5">
                       {s.title}
                     </p>
                     <p
-                      className="text-xs text-white/40"
+                      className="text-xs text-[#5c6a7a]"
                       dangerouslySetInnerHTML={{ __html: s.desc }}
                     />
                   </div>
@@ -134,11 +134,11 @@ export default function ServicesPage() {
             </div>
           </div>
           <div className="order-1 md:order-2">
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-2">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
               02
             </p>
             <h2 className="text-2xl font-medium mb-4">Customs Clearing</h2>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-sm text-[#5c6a7a] leading-relaxed mb-6">
               Navigating customs can be complex and time-consuming. Our licensed
               clearing agents know the regulations inside out across Zambia,
               Tanzania, DRC, and beyond — ensuring fast, compliant clearance
@@ -154,16 +154,16 @@ export default function ServicesPage() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-sm text-white/70"
+                  className="flex items-center gap-3 text-sm text-[#10233d]/80"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18] shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2955c8] shrink-0" />
                   <span dangerouslySetInnerHTML={{ __html: item }} />
                 </li>
               ))}
             </ul>
             <Link
               href="/clearance"
-              className="inline-flex items-center gap-2 bg-[#b5cc18] text-[#111] text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#c8e01a] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#2955c8] text-white text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#1f45a8] transition-colors"
             >
               Start clearing →
             </Link>
@@ -174,17 +174,17 @@ export default function ServicesPage() {
       {/* ── Transportation Service ── */}
       <section
         id="transportation"
-        className="px-8 py-14 border-b border-white/10"
+        className="px-8 py-14 border-b border-[#e2ddd0]"
       >
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-2">
+            <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
               03
             </p>
             <h2 className="text-2xl font-medium mb-4">
               Transportation &amp; Freight
             </h2>
-            <p className="text-sm text-white/50 leading-relaxed mb-6">
+            <p className="text-sm text-[#5c6a7a] leading-relaxed mb-6">
               Once cleared, your vehicle or cargo needs to reach its destination
               safely. We coordinate reliable road freight across borders with
               real-time tracking so you always know where your shipment is.
@@ -199,16 +199,16 @@ export default function ServicesPage() {
               ].map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-3 text-sm text-white/70"
+                  className="flex items-center gap-3 text-sm text-[#10233d]/80"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#b5cc18] shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2955c8] shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
             <Link
               href="/delivery"
-              className="inline-flex items-center gap-2 bg-[#b5cc18] text-[#111] text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#c8e01a] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#2955c8] text-white text-sm font-medium px-5 py-2.5 rounded-md hover:bg-[#1f45a8] transition-colors"
             >
               Book transport →
             </Link>
@@ -218,7 +218,7 @@ export default function ServicesPage() {
               {
                 icon: "🛣️",
                 title: "Cross-border routes",
-                desc: "Zambia · Tanzania · DRC · Zimbabwe and beyond.",
+                desc: "Zambia · Tanzania · DRC and beyond.",
               },
               {
                 icon: "📍",
@@ -233,16 +233,16 @@ export default function ServicesPage() {
             ].map((f) => (
               <div
                 key={f.title}
-                className="bg-[#1a1a1a] border border-white/10 rounded-xl p-5 flex gap-4"
+                className="bg-white border border-[#e2ddd0] rounded-xl p-5 flex gap-4"
               >
-                <div className="w-10 h-10 rounded-lg bg-[#b5cc18]/10 flex items-center justify-center shrink-0 text-lg">
+                <div className="w-10 h-10 rounded-lg bg-[#2955c8]/10 flex items-center justify-center shrink-0 text-lg">
                   {f.icon}
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-white mb-1">
+                  <p className="text-sm font-medium text-[#10233d] mb-1">
                     {f.title}
                   </p>
-                  <p className="text-xs text-white/40 leading-relaxed">
+                  <p className="text-xs text-[#5c6a7a] leading-relaxed">
                     {f.desc}
                   </p>
                 </div>
@@ -253,18 +253,18 @@ export default function ServicesPage() {
       </section>
 
       {/* ── CTA ── */}
-      <div className="mx-8 my-14 bg-[#b5cc18] rounded-xl p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="mx-8 my-14 bg-[#2955c8] rounded-xl p-9 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
-          <h2 className="text-xl font-medium text-[#111] leading-snug mb-1">
+          <h2 className="text-xl font-medium text-white leading-snug mb-1">
             Not sure which service you need?
           </h2>
-          <p className="text-sm text-[#111]/60">
+          <p className="text-sm text-white/70">
             Our team will guide you through the right solution.
           </p>
         </div>
         <a
           href="#contact"
-          className="bg-[#111] text-[#b5cc18] text-sm font-medium px-6 py-3 rounded-md hover:bg-[#222] transition-colors whitespace-nowrap"
+          className="bg-white text-[#2955c8] text-sm font-medium px-6 py-3 rounded-md hover:bg-[#f7f4ee] transition-colors whitespace-nowrap"
         >
           Talk to us →
         </a>
@@ -272,11 +272,11 @@ export default function ServicesPage() {
 
       {/* ── Contact ── */}
       <section id="contact" className="px-8 pb-16">
-        <p className="text-[11px] tracking-[2px] text-[#b5cc18] uppercase mb-2">
+        <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
           Get in touch
         </p>
         <h2 className="text-2xl font-medium mb-2">Contact us</h2>
-        <p className="text-sm text-white/45 mb-8">
+        <p className="text-sm text-[#5c6a7a] mb-8">
           Available on call, WhatsApp, and email
         </p>
         <div className="grid md:grid-cols-2 gap-10">
@@ -284,24 +284,19 @@ export default function ServicesPage() {
             {[
               {
                 label: "Call / WhatsApp",
-                lines: [
-                  "+260 978 136 121",
-                  "+260 970 318 410",
-                  "+243 977 668 203",
-                  "+255 748 450 691",
-                ],
+                lines: ["+260 777 547 157"],
               },
-              { label: "Email", lines: ["Justusjosams@gmail.com"] },
+              { label: "Email", lines: ["simwanzageorge200@gmail.com"] },
               { label: "Location", lines: ["Nakonde Hospital Junction"] },
             ].map((c) => (
               <div key={c.label} className="flex gap-4">
-                <div className="w-8 h-8 rounded-lg bg-[#b5cc18]/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="text-[#b5cc18] text-xs">✦</span>
+                <div className="w-8 h-8 rounded-lg bg-[#2955c8]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <span className="text-[#2955c8] text-xs">✦</span>
                 </div>
                 <div>
-                  <p className="text-xs text-white/35 mb-1">{c.label}</p>
+                  <p className="text-xs text-[#5c6a7a] mb-1">{c.label}</p>
                   {c.lines.map((l) => (
-                    <p key={l} className="text-sm text-white leading-relaxed">
+                    <p key={l} className="text-sm text-[#10233d] leading-relaxed">
                       {l}
                     </p>
                   ))}
@@ -313,14 +308,14 @@ export default function ServicesPage() {
             <input
               type="text"
               placeholder="Your name"
-              className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
             />
             <input
               type="text"
               placeholder="Phone or email"
-              className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50"
+              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
             />
-            <select className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white/50 focus:outline-none focus:border-[#b5cc18]/50">
+            <select className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#5c6a7a] focus:outline-none focus:border-[#2955c8]/50">
               <option value="">Select a service</option>
               <option value="car-sales">Car Buying &amp; Selling</option>
               <option value="clearing">Customs Clearing</option>
@@ -329,11 +324,11 @@ export default function ServicesPage() {
             <textarea
               rows={4}
               placeholder="Tell us more about your needs..."
-              className="bg-[#1a1a1a] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#b5cc18]/50 resize-none"
+              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50 resize-none"
             />
             <button
               type="submit"
-              className="bg-[#b5cc18] text-[#111] text-sm font-medium py-3 rounded-md hover:bg-[#c8e01a] transition-colors"
+              className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
             >
               Send message
             </button>
@@ -342,16 +337,16 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-white/10 px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-        <p className="text-xs text-white/25">
-          © 2025 RKK Logistics Limited. All rights reserved.
+      <footer className="border-t border-[#e2ddd0] px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="text-xs text-[#5c6a7a]">
+          © 2026 GreatNorth Logistics and Freight Ltd. All rights reserved.
         </p>
         <div className="flex gap-5">
           {["Privacy", "Terms", "Services"].map((l) => (
             <a
               key={l}
               href="#"
-              className="text-xs text-white/25 hover:text-white/50 transition-colors"
+              className="text-xs text-[#5c6a7a] hover:text-[#10233d] transition-colors"
             >
               {l}
             </a>
