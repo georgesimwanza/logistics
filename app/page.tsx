@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Oswald, Inter, JetBrains_Mono } from "next/font/google";
+import ContactForm from "@/app/components/contactForm";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -93,23 +94,20 @@ export default function Home() {
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          <div className="hidden md:flex items-center gap-8">
-            {[
-              { label: "Services", href: "#services" },
-              { label: "Route", href: "/coming-soon" },
-              { label: "Track", href: "/coming-soon" },
-              { label: "Contact", href: "#contact" },
-            ].map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-[#5c6a7a] hover:text-[#10233d] transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
+          {[
+            { label: "Services", href: "#services" },
+            { label: "Route", href: "/coming-soon" },
+            { label: "Track", href: "/coming-soon" },
+            { label: "Contact", href: "#contact" },
+          ].map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-sm text-[#5c6a7a] hover:text-[#10233d] transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
         <Link
           href="/login"
@@ -149,7 +147,7 @@ export default function Home() {
                 Get a quote
               </a>
               <a
-                href="#track"
+                href="/coming-soon"
                 className="border border-[#10233d]/15 text-[#10233d] text-sm px-6 py-3 rounded-md hover:bg-[#10233d]/5 transition-colors"
               >
                 Track shipment
@@ -322,29 +320,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <form className="flex flex-col gap-3">
-            <input
-              type="text"
-              placeholder="Your name"
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
-            />
-            <input
-              type="text"
-              placeholder="Phone or email"
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
-            />
-            <textarea
-              rows={4}
-              placeholder="Tell us about your shipment or vehicle..."
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50 resize-none"
-            />
-            <button
-              type="submit"
-              className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
-            >
-              Send message
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </section>
 
