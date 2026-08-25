@@ -36,10 +36,10 @@ export default function ComingSoonPage() {
             ← Back home
           </Link>
           <Link
-            href="/transportation"
+            href="/services"
             className="bg-[#2955c8] text-white text-sm font-medium px-6 py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
           >
-            Go to transportation →
+            Go to services →
           </Link>
         </div>
       </section>
