@@ -93,15 +93,23 @@ export default function Home() {
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          {["Services", "Route", "Track", "Contact"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm text-[#5c6a7a] hover:text-[#10233d] transition-colors"
-            >
-              {item}
-            </a>
-          ))}
+          <div className="hidden md:flex items-center gap-8">
+            {[
+              { label: "Services", href: "#services" },
+              { label: "Route", href: "/coming-soon" },
+              { label: "Track", href: "/coming-soon" },
+              { label: "Contact", href: "#contact" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-sm text-[#5c6a7a] hover:text-[#10233d] transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+
         </div>
         <Link
           href="/login"
