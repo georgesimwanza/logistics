@@ -1,11 +1,6 @@
 "use client";
 import Link from "next/link";
-
-const dummyUser = {
-  name: "George Simwanza",
-  email: "george@example.com",
-  avatar: "https://i.pravatar.cc/150?u=george",
-};
+import { useSession } from "next-auth/react";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -14,8 +9,22 @@ const navLinks = [
   { label: "Contact", href: "/services#contact" },
 ];
 
+function getInitials(name?: string | null, email?: string | null) {
+  if (name && name.trim()) {
+    const parts = name.trim().split(/\s+/);
+    const first = parts[0]?.[0] ?? "";
+    const last = parts.length > 1 ? parts[parts.length - 1][0] : "";
+    return (first + last).toUpperCase();
+  }
+  if (email) return email[0].toUpperCase();
+  return "?";
+}
+
 export default function NavBar() {
-  const user = dummyUser;
+  const { data: session, status } = useSession();
+  const user = session?.user;
+  const loading = status === "loading";
+
   return (
     <nav className="flex items-center justify-between px-8 py-4 border-b border-[#e2ddd0] bg-[#f7f4ee]">
       <Link href="/" className="flex items-center gap-3">
@@ -31,6 +40,7 @@ export default function NavBar() {
           GreatNorth <span className="text-[#2955c8]">Logistics &amp; Freight</span>
         </span>
       </Link>
+
       <div className="hidden md:flex items-center gap-8">
         {navLinks.map((link) => (
           <Link
@@ -42,20 +52,38 @@ export default function NavBar() {
           </Link>
         ))}
       </div>
+
       <div className="flex items-center gap-3">
-        <div className="hidden md:flex flex-col items-end">
-          <span className="text-xs font-medium text-[#10233d] leading-tight">
-            {user.name}
-          </span>
-          <span className="text-[11px] text-[#5c6a7a]">{user.email}</span>
-        </div>
-        <div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-[#2955c8]/40 ring-offset-2 ring-offset-[#f7f4ee]">
-          <img
-            src={user.avatar}
-            alt={user.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        {loading ? (
+          <>
+            <div className="hidden md:flex flex-col items-end gap-1.5">
+              <div className="w-24 h-3 rounded bg-[#e2ddd0] animate-pulse" />
+              <div className="w-32 h-2.5 rounded bg-[#e2ddd0] animate-pulse" />
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[#e2ddd0] animate-pulse" />
+          </>
+        ) : user ? (
+          <>
+            <div className="hidden md:flex flex-col items-end">
+              <span className="text-xs font-medium text-[#10233d] leading-tight">
+                {user.name ?? "Account"}
+              </span>
+              {user.email && (
+                <span className="text-[11px] text-[#5c6a7a]">{user.email}</span>
+              )}
+            </div>
+            <div className="w-9 h-9 rounded-full bg-[#2955c8] text-white text-xs font-semibold flex items-center justify-center ring-2 ring-[#2955c8]/30 ring-offset-2 ring-offset-[#f7f4ee]">
+              {getInitials(user.name, user.email)}
+            </div>
+          </>
+        ) : (
+          <Link
+            href="/login"
+            className="bg-[#2955c8] text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-[#1f45a8] transition-colors"
+          >
+            Sign in
+          </Link>
+        )}
       </div>
     </nav>
   );
