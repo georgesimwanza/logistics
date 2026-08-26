@@ -18,10 +18,10 @@ Operating out of Nakonde Hospital Junction, with an operational reach across 4 c
 ## Preview
 
 ### Homepage
-![RKK Logistics services page](./public/Screenshot%202026-06-13%20144637.png)
+
 
 ### Services Page
-![RKK Logistics services page](./public/Screenshot%2026-06-13%144813.png)
+
 
 ## Pages
 
