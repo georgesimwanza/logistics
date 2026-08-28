@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import NavAuthButton from "./navauthbutton";
 
 const navLinks = [
   { label: "Services", href: "/services" },
