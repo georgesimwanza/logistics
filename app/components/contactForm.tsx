@@ -2,55 +2,24 @@
 
 import { useState } from "react";
 
+const WHATSAPP_NUMBER = "260777547157"; // no +, no spaces
+
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [message, setMessage] = useState("");
-  const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSending(true);
-    setError("");
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, contact, message }),
-      });
+    const text = `Hi GreatNorth, my name is ${name}.\nContact: ${contact}\n\n${message}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to send. Please try again.");
-      }
-
-      setSent(true);
-      setName("");
-      setContact("");
-      setMessage("");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong.");
-    } finally {
-      setSending(false);
-    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      {sent && (
-        <div className="bg-[#2955c8]/10 border border-[#2955c8]/30 rounded-md px-4 py-3 text-sm text-[#2955c8]">
-          ✓ Message sent — we&apos;ll get back to you shortly.
-        </div>
-      )}
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-md px-4 py-3 text-sm text-red-600">
-          ✕ {error}
-        </div>
-      )}
-
       <input
         type="text"
         placeholder="Your name"
@@ -78,10 +47,9 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={sending}
-        className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
       >
-        {sending ? "Sending…" : "Send message"}
+        Send on WhatsApp →
       </button>
     </form>
   );
