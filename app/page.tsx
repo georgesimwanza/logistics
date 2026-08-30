@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Oswald, Inter, JetBrains_Mono } from "next/font/google";
 import ContactForm from "@/app/components/contactForm";
+import NavAuthButton from "./components/navauthbutton";
+
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -109,12 +111,7 @@ export default function Home() {
             </a>
           ))}
         </div>
-        <Link
-          href="/login"
-          className="bg-[#2955c8] text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-[#1f45a8] transition-colors"
-        >
-          Get started
-        </Link>
+        <NavAuthButton />
       </nav>
 
       {/* ── Hero ── */}
