@@ -1,6 +1,7 @@
 "use client";
 import NavBar from "@/app/components/NavBar";
 import Link from "next/link";
+import ContactForm from "@/app/components/contactForm";
 
 export default function ServicesPage() {
   return (
@@ -304,35 +305,7 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-          <form className="flex flex-col gap-3">
-            <input
-              type="text"
-              placeholder="Your name"
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
-            />
-            <input
-              type="text"
-              placeholder="Phone or email"
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50"
-            />
-            <select className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#5c6a7a] focus:outline-none focus:border-[#2955c8]/50">
-              <option value="">Select a service</option>
-              <option value="car-sales">Car Buying &amp; Selling</option>
-              <option value="clearing">Customs Clearing</option>
-              <option value="transport">Transportation &amp; Freight</option>
-            </select>
-            <textarea
-              rows={4}
-              placeholder="Tell us more about your needs..."
-              className="bg-white border border-[#e2ddd0] rounded-md px-4 py-3 text-sm text-[#10233d] placeholder:text-[#5c6a7a]/60 focus:outline-none focus:border-[#2955c8]/50 resize-none"
-            />
-            <button
-              type="submit"
-              className="bg-[#2955c8] text-white text-sm font-medium py-3 rounded-md hover:bg-[#1f45a8] transition-colors"
-            >
-              Send message
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </section>
 

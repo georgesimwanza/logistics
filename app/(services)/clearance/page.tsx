@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import NavBar from "@/app/components/NavBar";
+import ContactForm from "@/app/components/contactForm";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -582,6 +583,39 @@ export default function CustomsClearingPage() {
           </div>
         )}
       </div>
+
+      {/* ── General enquiry ── */}
+      <section className="px-8 py-14 border-t border-[#e2ddd0]">
+        <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
+          Still have questions?
+        </p>
+        <h2 className="text-2xl font-medium mb-2">General enquiry</h2>
+        <p className="text-sm text-[#5c6a7a] mb-8 max-w-lg">
+          Not quite what you were looking for? Send us a message and we&apos;ll
+          get back to you directly.
+        </p>
+        <div className="max-w-md">
+          <ContactForm />
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer className="border-t border-[#e2ddd0] px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="text-xs text-[#5c6a7a]">
+          © 2026 GreatNorth Logistics and Freight Ltd. All rights reserved.
+        </p>
+        <div className="flex gap-5">
+          {["Privacy", "Terms", "Services"].map((l) => (
+            <a
+              key={l}
+              href="#"
+              className="text-xs text-[#5c6a7a] hover:text-[#10233d] transition-colors"
+            >
+              {l}
+            </a>
+          ))}
+        </div>
+      </footer>
     </main>
   );
 }

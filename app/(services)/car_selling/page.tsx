@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import NavBar from "@/app/components/NavBar";
+import ContactForm from "@/app/components/contactForm";
 
 const makes = ["All", "Mercedes-Benz", "Land Rover", "Jaguar", "BMW", "Audi"];
 const fuels = ["All", "Petrol", "Diesel"];
@@ -237,6 +238,21 @@ export default function CarsPage() {
           Sell your car →
         </a>
       </div>
+
+      {/* ── General enquiry ── */}
+      <section id="contact" className="px-8 py-14 border-t border-[#e2ddd0]">
+        <p className="text-[11px] tracking-[2px] text-[#2955c8] uppercase mb-2">
+          Still have questions?
+        </p>
+        <h2 className="text-2xl font-medium mb-2">General enquiry</h2>
+        <p className="text-sm text-[#5c6a7a] mb-8 max-w-lg">
+          Not quite what you were looking for? Send us a message and we&apos;ll
+          get back to you directly.
+        </p>
+        <div className="max-w-md">
+          <ContactForm />
+        </div>
+      </section>
 
       {/* ── Footer ── */}
       <footer className="border-t border-[#e2ddd0] px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
