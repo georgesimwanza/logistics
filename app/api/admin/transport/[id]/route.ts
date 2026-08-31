@@ -3,10 +3,11 @@ import { deleteTransportForm } from "@/app/(Models)/transport";
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    await deleteTransportForm(params.id);
+    const { id } = await params;
+    await deleteTransportForm(id);
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Failed to delete transport form:", err);
