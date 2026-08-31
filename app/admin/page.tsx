@@ -5,6 +5,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import NavBar from "@/app/components/NavBar";
 
+const ADMIN_EMAILS = ["simwanzageorge200@gmail.com"];
+
 type ClearanceStatus = "Submitted" | "Agent assigned" | "At customs" | "Released";
 
 interface ClearanceForm {
@@ -77,11 +79,16 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const isAdmin =
+    !!session?.user?.email && ADMIN_EMAILS.includes(session.user.email);
+
   useEffect(() => {
     if (status === "unauthenticated") {
       router.replace("/login");
+    } else if (status === "authenticated" && !isAdmin) {
+      router.replace("/");
     }
-  }, [status, router]);
+  }, [status, isAdmin, router]);
 
   const loadData = useCallback(async () => {
     setLoading(true);
@@ -107,8 +114,10 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    if (status === "authenticated") loadData();
-  }, [status, loadData]);
+    if (status === "authenticated" && isAdmin) {
+      Promise.resolve().then(() => loadData());
+    }
+  }, [status, isAdmin, loadData]);
 
   const handleStatusChange = async (id: string, newStatus: ClearanceStatus) => {
     setClearanceForms((prev) =>
@@ -155,7 +164,7 @@ export default function AdminPage() {
     }
   };
 
-  if (status === "loading" || status === "unauthenticated") {
+  if (status === "loading" || status === "unauthenticated" || !isAdmin) {
     return (
       <main className="bg-[#f7f4ee] min-h-screen text-[#10233d] font-sans">
         <NavBar />
