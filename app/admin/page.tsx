@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import NavBar from "@/app/components/NavBar";
 
-const ADMIN_EMAILS = ["simwanzageorge200@gmail.com"];
+const ADMIN_EMAILS = ["simwanzageorge2000@gmail.com"];
 
 type ClearanceStatus = "Submitted" | "Agent assigned" | "At customs" | "Released";
 
